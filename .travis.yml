@@ -17,11 +17,10 @@ script:
 env:
  global:
    - GH_REF: github.com/xuxia1009/node-grab.git
-
  
 after_script:
-  - git config user.name "xuxia1009"
-  - git config user.email "18810986017@163.com"
+  - git config user.name "${GIT_NAME}"
+  - git config user.email "${GIT_EMAIL}"
   - git add .
   - git commit -m "Update docs"
   - git push --force --quiet "https://${GITHUB_TOkEN}@${GH_REF}" master:master
