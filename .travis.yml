@@ -3,12 +3,18 @@ language: node_js
  
 node_js:
   - "10"
+
+# 指定缓存模块，缓存可以加速编译
+cache:
+  directories:
+    - node_modules
  
 branches:
   only:
     - master
 
 before_install:
+  - export TZ='Asia/Beijing'
   - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
   - git lfs pull
  
@@ -23,6 +29,7 @@ env:
    - GH_REF: github.com/xuxia1009/node-grab.git
  
 after_script:
+  - git init
   - git config user.name "${GIT_NAME}"
   - git config user.email "${GIT_EMAIL}"
   - git add .
