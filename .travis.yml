@@ -15,8 +15,8 @@ branches:
 
 before_install:
   - export TZ='Asia/Beijing'
-  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
-  - git lfs pull
+  # - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
+  # - git lfs pull
  
 install:
   - npm install
@@ -29,9 +29,9 @@ env:
    - GH_REF: github.com/xuxia1009/node-grab.git
  
 after_script:
-  - git init
   - git config user.name "${GIT_NAME}"
   - git config user.email "${GIT_EMAIL}"
+  - git lfs pull
   - git add .
   - git commit -m "Update docs"
   - git push --force --quiet "https://${GITHUB_TOkEN}@${GH_REF}" master:master
